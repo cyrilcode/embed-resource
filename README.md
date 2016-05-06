@@ -42,9 +42,11 @@ So, in this example, the symbol name is `frag_glsl`.
 
 ### Credits...
 
-This uses ideas based on
+This uses ideas from
 [this blog post](https://beesbuzz.biz/blog/e/2014/07/31-embedding_binary_resources_with_cmake_and_c11.php)
-and [this Stack Overflow question](http://stackoverflow.com/questions/11813271/embed-resources-eg-shader-code-images-into-executable-library-with-cmake).
+which included the Resource class and macro idea. Unfortunately, the use of `ld` command didn't work on OSX.
+So, instead, I've used a simple C++ executable that does the same conversion, based on ideas from
+[this Stack Overflow question](http://stackoverflow.com/questions/11813271/embed-resources-eg-shader-code-images-into-executable-library-with-cmake).
 
 ## License
 
