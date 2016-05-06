@@ -12,11 +12,12 @@ Then add to your CMakeLists.txt for your project:
     include_directories(lib/embed-resource)
     add_subdirectory(lib/embed-resource)
 
-Now you can add your resources, by calling the provided `embed_resources()` function:
+Now you can add your resources, by calling the provided `embed_resources()` function in your
+CMakeLists.txt file:
 
     embed_resources(MyResources shaders/vertex.glsl shaders/frag.glsl)
 
-Then link to your binary:
+Then link to your binary by adding the created variable to your add_executable statement:
 
     add_executable(MyApp ${SOURCE_FILES} ${MyResources})
 
@@ -42,5 +43,9 @@ So, in this example, the symbol name is `frag_glsl`.
 ### Credits...
 
 This uses ideas based on
-[this](https://beesbuzz.biz/blog/e/2014/07/31-embedding_binary_resources_with_cmake_and_c11.php)
-and [this](http://stackoverflow.com/questions/11813271/embed-resources-eg-shader-code-images-into-executable-library-with-cmake).
+[this blog post](https://beesbuzz.biz/blog/e/2014/07/31-embedding_binary_resources_with_cmake_and_c11.php)
+and [this Stack Overflow question](http://stackoverflow.com/questions/11813271/embed-resources-eg-shader-code-images-into-executable-library-with-cmake).
+
+## License
+
+Public Domain / [WTFPL](http://www.wtfpl.net/)
