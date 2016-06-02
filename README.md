@@ -5,7 +5,7 @@ C++ projects. Uses C++11 features and Boost for filesystem.
 
 Include this repository in your CMake based project:
 
-    git submodule add https://github.com/darrenmothersele/embed-resource.git lib/embed-resource
+    git submodule add https://github.com/cyrilcode/embed-resource.git lib/embed-resource
 
 Then add to your CMakeLists.txt for your project:
 
