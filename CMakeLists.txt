@@ -20,3 +20,5 @@ endfunction()
 find_package(Boost COMPONENTS filesystem REQUIRED)
 add_executable(embed-resource embedresource.cpp)
 target_link_libraries(embed-resource ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+
+set(EMBED_RES_INCLUDE_DIRS ${PROJECT_SOURCE_DIR} PARENT_SCOPE)
