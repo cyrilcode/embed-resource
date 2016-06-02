@@ -19,6 +19,7 @@ int main(int argc, char** argv)
 
     string sym = src.filename().string();
     replace(sym.begin(), sym.end(), '.', '_');
+    replace(sym.begin(), sym.end(), '-', '_');
 
     create_directories(dst.parent_path());
 
