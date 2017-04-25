@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     {
         char c;
         ifs.get(c);
-        ofs << "0x" << hex << (unsigned int)c << ", ";
+        ofs << "0x" << hex << (c&0xff) << ", ";
         if (++lineCount == 10) {
             ofs << endl;
             lineCount = 0;
