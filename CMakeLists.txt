@@ -22,7 +22,7 @@ function(embed_resources out_var)
     set(${out_var} "${result}" PARENT_SCOPE)
 endfunction()
 
-add_executable(embed-resource embedresource.cpp)
+add_executable(embed-resource embedresource-cpp-11.cpp)
 target_link_libraries(embed-resource)
 
 set(EMBED_RES_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
