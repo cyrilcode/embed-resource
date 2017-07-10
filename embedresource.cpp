@@ -1,50 +1,48 @@
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/fstream.hpp>
 #include <iostream>
-
-using namespace std;
-using namespace boost::filesystem;
+#include <fstream>
+#include <algorithm>
+#include <string>
 
 int main(int argc, char** argv)
 {
     if (argc < 3) {
-        fprintf(stderr, "USAGE: %s {sym} {rsrc}\n\n"
-                        "  Creates {sym}.c from the contents of {rsrc}\n",
-                argv[0]);
+        std::cerr << "USAGE: " << argv[0] << " {sym} {rsrc}" << std::endl << std::endl
+                          << "  Creates {sym}.c from the contents of {rsrc}"  << std::endl;
         return EXIT_FAILURE;
     }
 
-    path dst{argv[1]};
-    path src{argv[2]};
+    std::string sym(argv[2]);
+    std::replace(sym.begin(), sym.end(), '.', '_');
+    std::replace(sym.begin(), sym.end(), '-', '_');
+    std::replace(sym.begin(), sym.end(), '/', '_');
+    std::replace(sym.begin(), sym.end(), '\\', '_');
 
-    string sym = src.filename().string();
-    replace(sym.begin(), sym.end(), '.', '_');
-    replace(sym.begin(), sym.end(), '-', '_');
+    std::ifstream ifs;
+    ifs.open(argv[2]);
 
-    create_directories(dst.parent_path());
+    std::ofstream ofs;
+    ofs.open(argv[1]);
 
-    boost::filesystem::ofstream ofs{dst};
-
-    boost::filesystem::ifstream ifs{src};
-
-    ofs << "#include <stdlib.h>" << endl;
-    ofs << "const char _resource_" << sym << "[] = {" << endl;
+    ofs << "#include <stdlib.h>" << std::endl;
+    ofs << "const char _resource_" << sym << "[] = {" << std::endl;
 
     size_t lineCount = 0;
     while (!ifs.eof())
     {
         char c;
         ifs.get(c);
-        ofs << "0x" << hex << (c&0xff) << ", ";
+        ofs << "0x" << std::hex << (c & 0xff) << ", ";
         if (++lineCount == 10) {
-            ofs << endl;
+            ofs << std::endl;
             lineCount = 0;
         }
     }
 
-
-    ofs << "};" << endl;
+    ofs << "};" << std::endl;
     ofs << "const size_t _resource_" << sym << "_len = sizeof(_resource_" << sym << ");";
+
+    ofs.close();
+    ifs.close();
 
     return EXIT_SUCCESS;
 }

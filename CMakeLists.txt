@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(EmbedResource)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
 function(embed_resources out_var)
     set(result)
     foreach(in_f ${ARGN})
@@ -17,8 +20,7 @@ function(embed_resources out_var)
     set(${out_var} "${result}" PARENT_SCOPE)
 endfunction()
 
-find_package(Boost COMPONENTS filesystem REQUIRED)
 add_executable(embed-resource embedresource.cpp)
-target_link_libraries(embed-resource ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+target_link_libraries(embed-resource)
 
 set(EMBED_RES_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
