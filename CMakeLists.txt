@@ -17,7 +17,8 @@ function(embed_resources out_var)
     set(${out_var} "${result}" PARENT_SCOPE)
 endfunction()
 
-find_package(Boost COMPONENTS filesystem REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+find_package(Boost COMPONENTS filesystem system REQUIRED)
 add_executable(embed-resource embedresource.cpp)
 target_link_libraries(embed-resource ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
 
