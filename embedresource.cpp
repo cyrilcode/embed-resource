@@ -31,10 +31,9 @@ int main(int argc, char** argv)
     ofs << "const char _resource_" << sym << "[] = {" << endl;
 
     size_t lineCount = 0;
-    while (!ifs.eof())
+    char c;
+    while (ifs >> std::noskipws >> c)
     {
-        char c;
-        ifs.get(c);
         ofs << "0x" << hex << (c&0xff) << ", ";
         if (++lineCount == 10) {
             ofs << endl;
