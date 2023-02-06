@@ -1,7 +1,7 @@
 # Embed Resource
 
 Embed binary files and resources (such as GLSL Shader source files) into
-C++ projects. Uses C++11 features and Boost for filesystem.
+C++ projects.
 
 Include this repository in your CMake based project:
 
